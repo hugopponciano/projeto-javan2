@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class roteiro {
+    public static void main(String[] args) {
+        // Matriz representando as distâncias entre cidades
+        int[][] distanciaEntreCidades = {
+            {0, 2, 11, 6, 15, 11, 1},
+            {2, 0, 7, 12, 4, 2, 15},
+            {11, 7, 0, 11, 8, 3, 13},
+            {6, 12, 11, 0, 10, 2, 1},
+            {15, 4, 8, 10, 0, 5, 14},
+            {11, 2, 3, 2, 5, 0, 14},
+            {1, 15, 13, 1, 14, 14, 0}
+        };
+
+        // Objeto Scanner para entrada do usuário
+        Scanner scanner = new Scanner(System.in);
+        int origem = -1;
+        int destino = -1;
+        int primeiro = -1;
+        int segundo = -1;
+        
+        // Loop para obter entrada do usuário até que seja válida
+        do {
+            System.out.println("Bem-vindo ao Programa que monta e calcula o seu roteiro de viagem!");
+
+            // Obtendo entrada para a cidade de origem
+            System.out.println("Digite o número da cidade de origem (entre 1 e 7) :");
+            origem = scanner.nextInt();
+
+            // Obtendo entrada para a primeira cidade de descanso
+            System.out.println("Digite o número da primeira cidade de descanso (entre 1 e 7): ");
+            primeiro = scanner.nextInt();
+
+            // Obtendo entrada para a segunda cidade de descanso
+            System.out.println("Digite o número da segunda cidade de descanso (entre 1 e 7): ");
+            segundo = scanner.nextInt();
+
+            // Obtendo entrada para a cidade de destino
+            System.out.println("Digite o número da cidade de destino (entre 1 e 7): ");
+            destino = scanner.nextInt();
+
+            // Verificando se as cidades fornecidas são válidas
+            if (origem <= 0 || origem > distanciaEntreCidades.length || primeiro <= 0 || primeiro > distanciaEntreCidades.length || segundo <= 0 || segundo > distanciaEntreCidades.length || destino <= 0 || destino > distanciaEntreCidades.length)
+                System.out.println("Uma ou mais cidades digitadas são inválidas. Por favor, insira valores entre 1 e " + distanciaEntreCidades.length + ".");
+        } while (origem <= 0 || origem > distanciaEntreCidades.length || primeiro <= 0 || primeiro > distanciaEntreCidades.length || segundo <= 0 || segundo > distanciaEntreCidades.length || destino <= 0 || destino > distanciaEntreCidades.length);
+
+        // Calculando o tempo total para ambas as opções de rota
+        int tempoTotalOpcao1 = distanciaEntreCidades[origem -1][primeiro -1] + distanciaEntreCidades[primeiro -1][destino -1];
+        int tempoTotalOpcao2 = distanciaEntreCidades[origem -1][segundo -1] + distanciaEntreCidades[segundo -1][destino -1];
+
+        // Determinando e exibindo a melhor rota com base nos tempos totais
+        if (tempoTotalOpcao1 < tempoTotalOpcao2) {
+            System.out.println("A melhor rota é: Origem -> Cidade de descanso 1 -> Cidade de descanso 2 -> Destino");
+            System.out.println("Tempo total de viagem: " + tempoTotalOpcao1 + " horas");
+        } else if (tempoTotalOpcao2 < tempoTotalOpcao1) {
+            System.out.println("A melhor rota é: Origem -> Cidade de descanso 2 -> Cidade de descanso 1 -> Destino");
+            System.out.println("Tempo total de viagem: " + tempoTotalOpcao2 + " horas");
+        } else
+            System.out.println("Ambas as rotas têm o mesmo tempo total de viagem: " + tempoTotalOpcao1 + " horas");
+    }
+}
