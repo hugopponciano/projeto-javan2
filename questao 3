@@ -1,0 +1,41 @@
+import java.util.Scanner;
+import java.util.Random;
+public class MyClass {
+public static void main(String args[]) {
+// Criando uma instância da classe Random para gerar números aleatórios
+Random rand = new Random();
+// Inicializando as variáveis cidadeX e destinoY com números aleatórios entre 1 e 7
+int cidadeX = rand.nextInt(7) + 1;
+int destinoY = rand.nextInt(7) + 1;
+// Matriz representando as distâncias entre cidades
+int[][] cidades = {
+{0, 2, 11, 6, 15, 11, 1},
+{2, 0, 7, 12, 4, 2, 15},
+{11, 7, 0, 11, 8, 3, 13},
+{6, 12, 11, 0, 10, 2, 1},
+{15, 4, 8, 10, 0, 5, 13},
+{11, 2, 3, 2, 5, 0, 14},
+{1, 15, 13, 1, 13, 14, 0}
+};
+// Imprimindo a cidade de origem e destino
+System.out.println("Cidade de Origem.: " + cidadeX);
+System.out.println("Cidade de Destino.:" + destinoY);
+// Loop para calcular o tempo necessário para chegar ao destino
+while (cidadeX != destinoY) {
+// Obtendo o tempo necessário entre as cidades
+int tempo = cidades[cidadeX - 1][destinoY - 1];
+// Imprimindo a informação sobre o tempo de viagem
+System.out.println("O tempo que precisará para ir da cidade " +
+cidadeX + " até a cidade " + destinoY + " será " + tempo);
+// Atualizando a cidade de origem para a cidade de destino
+cidadeX = destinoY;
+// Gerando uma nova cidade de destino aleatória
+destinoY = rand.nextInt(7) + 1;
+// Imprimindo a próxima parada
+System.out.println("Próxima parada: " + destinoY);
+}
+// Imprimindo a mensagem de conclusão da viagem
+System.out.println("Você é um viajante! Conseguiu chegar à cidade de origem e destino,
+parabéns!");
+}
+}
