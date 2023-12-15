@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class CidadesZ {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int cidadeOG = -1; // Cidade de origem
+        int cidadeFinal = -1; // Cidade final
+        int tempoViagem = 0; // Tempo total de viagem
+
+        // Matriz de distâncias entre as cidades
+        int[][] distanciaOGFIM = {
+            {0, 2, 11, 6, 15, 11, 1},
+            {2, 0, 7, 12, 4, 2, 15},
+            {11, 7, 0, 11, 8, 3, 13},
+            {6, 12, 11, 0, 10, 2, 1},
+            {15, 4, 8, 10, 0, 5, 13},
+            {11, 2, 3, 2, 5, 0, 14},
+            {1, 15, 13, 1, 13, 14, 0}
+        };
+
+        // Obtendo a cidade de origem (OG) válida
+        do {
+            System.out.print("Digite o número da cidade OG (de 1 a 7): ");
+            cidadeOG = scanner.nextInt();
+            if (cidadeOG <= 0 || cidadeOG > distanciaOGFIM.length) {
+                System.out.println("Inválido, tente outro número.");
+            }
+        } while (cidadeOG <= 0 || cidadeOG > distanciaOGFIM.length);
+
+        // Obtendo a cidade final e calculando o tempo de viagem
+        do {
+            System.out.print("Digite o número da cidade final (de 1 a 7) ou 0 para retornar à cidade OG: ");
+            cidadeFinal = scanner.nextInt();
+            
+            if (cidadeFinal < 0 || cidadeFinal > distanciaOGFIM.length) {
+                System.out.println("Inválido, tente outro número.");
+            } else if (cidadeFinal != 0) {
+                // Calculando o tempo de viagem com base na matriz de distâncias
+                tempoViagem += distanciaOGFIM[cidadeOG - 1][cidadeFinal - 1];
+                cidadeOG = cidadeFinal; // Atualizando a cidade de origem para a próxima iteração
+            }
+        } while (cidadeFinal != 0);
+
+        // Exibindo o resultado final
+        System.out.printf("Você chegou na cidade desejada, tempo de viagem foi: %d horas.\n", tempoViagem);
+    }
+}
