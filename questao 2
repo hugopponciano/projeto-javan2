@@ -1,0 +1,60 @@
+import java.util.Random;
+public class MyClass {
+public static void main(String args[]) {
+// Inicialização do gerador de números aleatórios
+Random rand = new Random();
+// Inicialização do array de temperaturas
+double[] termometros = new double[28];
+// Preenchimento do array com temperaturas aleatórias entre 10 e 35 graus
+for (int i = 0; i < 28; i++) {
+termometros[i] = 10 + rand.nextDouble() * 25;
+}
+// Inicialização da matriz que armazenará as temperaturas por semana e dia da semana
+double[][] matrizdotermometro = new double[7][4];
+int dia = 0;
+// Preenchimento da matriz com as temperaturas do array
+for (int semana = 0; semana < 4; semana++) {
+for (int diasemanal = 0; diasemanal < 7; diasemanal++) {
+matrizdotermometro[diasemanal][semana] = termometros[dia];
+dia++;
+}
+}
+// Cálculo da média de temperatura para cada dia da semana
+double[] mediapordiasemana = new double[7];
+for (int i = 0; i < 7; i++) {
+double soma = 0;
+for (int h = 0; h < 4; h++) {
+soma += matrizdotermometro[i][h];
+}
+mediapordiasemana[i] = soma / 4;
+}
+// Cálculo da média geral das temperaturas na semana
+double somatotal = 0;
+for (double temperatura : termometros) {
+somatotal += temperatura;
+}
+double mediatotal = somatotal / 28;
+// Impressão das temperaturas registradas por dia da semana
+System.out.println("Temperaturas registradas:");
+String[] dianasemana = {"Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado",
+"Domingo"};
+for (int i = 0; i < 7; i++) {
+System.out.print(dianasemana[i] + " ");
+}
+System.out.println();
+for (int semana = 0; semana < 4; semana++) {
+for (int diasemanal = 0; diasemanal < 7; diasemanal++) {
+System.out.printf("%.2f\t", matrizdotermometro[diasemanal][semana]);
+}
+System.out.println();
+}
+// Impressão da média da temperatura para cada dia da semana
+System.out.println("Média da temperatura para cada dia da semana:");
+for (int i = 0; i < 7; i++) {
+System.out.println(dianasemana[i] + ": " + String.format("%.2f", mediapordiasemana[i]));
+}
+// Impressão da média geral das temperaturas na semana
+System.out.println("Média geral das temperaturas na semana: " + String.format("%.2f",
+mediatotal));
+}
+}
