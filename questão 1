@@ -1,0 +1,35 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Akinator {
+public static void main(String[] args) {
+// Inicialização do Scanner para entrada do usuário e do Random para gerar um número aleatorio
+
+Scanner scanner = new Scanner(System.in);
+Random random = new Random();
+// Saudação ao jogador
+System.out.println("Bem-vindo! Vamos jogar um Akinator de uma forma diferente, onde
+que você advinha!");
+System.out.println("Estou pensando em um número de 1 a 100. Você consegue adivinhar
+qual é?");
+// Geração de um número aleatório de 1 a 100
+int numeroAkinator = random.nextInt(100) + 1;
+int tentativas = 0; // Contador de tentativas do jogador
+// Loop principal do jogo
+while (true) {
+System.out.print("Digite seu palpite: ");
+int palpite = scanner.nextInt();
+tentativas++;
+// Verificação do palpite em relação ao número secreto
+if (palpite < numeroAkinator) {
+System.out.println("Acho que não ein, tente um número maior.");
+} else if (palpite > numeroAkinator) {
+System.out.println("Acho que não ein, Tente um número menor.");
+} else {
+// Mensagem de acerto e encerramento do jogo
+System.out.println("Muito bem! Você é um verdadeiro Akinator, acertou em " +
+tentativas + " tentativas!");
+break;
+}
+}
+}
+}
