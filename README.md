@@ -1,2 +1,2 @@
 # projeto-javan2
-projeto para nota java
+projeto da faculdade na Linguagem JAVA
